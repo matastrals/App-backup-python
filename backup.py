@@ -1,3 +1,4 @@
+import logging
 import json
 import tarfile
 from datetime import datetime
@@ -5,21 +6,37 @@ import uuid
 import sys
 import paramiko
 from restore_backup import restore
-from clean_backup import clean
-from delete_backup import delete
+
 
 def main():
+
     if (len(sys.argv) > 1):
         if (sys.argv[1] == "backup"):
+            logging.info('Start of the backup...')
             backup()
         elif (sys.argv[1] == "list"):
-            addToState()
+            list()
         elif (sys.argv[1] == "restore"):
             restore()
         elif (sys.argv[1] == "delete"):
             delete()
         elif (sys.argv[1] == "clean"):
             clean()
+
+
+
+def backup():
+    data_json = readJsonFile()
+    backup_name, date_str = backupName()
+    compress(backup_name, data_json['backup']['files']['path'])
+    if data_json['backup']['directory']['ssh']['active']:
+        ssh(data_json['backup']['directory']['ssh']['ip'], 
+            data_json['backup']['directory']['ssh']['port'], 
+            data_json['backup']['directory']['ssh']['username'],
+            data_json['backup']['directory']['ssh']['password'],
+            data_json['backup']['files']['path'],
+            data_json['backup']['directory']['path'])
+    addToState(backup_name[:8], date_str, data_json['backup']['directory']['path'])
 
 def addToState(id:str, time:str, path:str):
     with open('state.json', 'r', encoding='utf-8') as file:
@@ -30,17 +47,7 @@ def addToState(id:str, time:str, path:str):
     with open('state.json', 'w') as file:
         json.dump(data, file)
 
-def backup():
-    data_json = readJsonFile()
-    backup_name = backupName()
-    compress(backup_name, data_json['backup']['files']['path'])
-    if data_json['backup']['directory']['ssh']['active']:
-        ssh(data_json['backup']['directory']['ssh']['ip'], 
-            data_json['backup']['directory']['ssh']['port'], 
-            data_json['backup']['directory']['ssh']['username'],
-            data_json['backup']['directory']['ssh']['password'],
-            data_json['backup']['files']['path'],
-            data_json['backup']['directory']['path'])
+
 
 def readJsonFile() -> dict :
     with open('backup.json') as mon_fichier:
@@ -54,7 +61,7 @@ def backupName() -> str :
     date_str = today_formated_date.replace("/", "-").replace(" ", "_").replace(":", "")
     hash = str(uuid.uuid4())[:8]
     backup_name = hash + "_" + date_str
-    return backup_name
+    return backup_name, date_str
 
 
 def compress(backup_name:str, path:str):
