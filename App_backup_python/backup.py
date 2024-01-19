@@ -6,6 +6,8 @@ import uuid
 import sys
 import paramiko
 from restore_backup import restore
+from delete_backup import delete
+from clean_backup import clean
 
 
 def main():
