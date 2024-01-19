@@ -6,5 +6,8 @@ ExecStart=/etc/backup/backup.py
 WorkingDirectory=/srv/backup/
 Restart=always
 
+User=backup
+group=backup
+
 [Install]
 WantedBy=default.target

@@ -9,7 +9,11 @@ fi
 
 # users
 groupadd backup
-useradd -m -d /srv/backup -g backup -s /usr/sbin/nologin backup
+useradd -m -g backup -s /usr/sbin/nologin backup
+
+# app files
+chmod 700 backup.py delete_backup.py add_backup.py clean_backup.py restore_backup.py state.json backup.json
+chown backup backup.py delete_backup.py add_backup.py clean_backup.py restore_backup.py state.json backup.json
 
 # log dir
 mkdir /var/log/backup/
