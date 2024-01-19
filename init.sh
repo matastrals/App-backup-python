@@ -1,8 +1,7 @@
 #!/bin/bash
 # -*- ENCODING: UTF-8 -*-
 groupadd backup
-useradd -m -d /srv/backup -s /usr/bin/nologin backup
-usermod -aG backup backup
+useradd -m -d /srv/backup -g backup -s /usr/bin/nologin backup
 mkdir /var/log/backup/
 chmod 700 /var/log/backup/
 chown backup /var/log/backup/ -R backup
