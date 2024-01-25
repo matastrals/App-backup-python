@@ -7,7 +7,7 @@ WorkingDirectory=/srv/backup/
 Restart=always
 
 User=backup
-group=backup
+Group=backup
 
 [Install]
 WantedBy=default.target
