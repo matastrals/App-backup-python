@@ -13,15 +13,15 @@ useradd -m -g backup -s /usr/sbin/nologin backup
 
 # app files
 chmod 700 backup.py delete_backup.py add_backup.py clean_backup.py restore_backup.py state.json backup.json
-chown backup backup.py delete_backup.py add_backup.py clean_backup.py restore_backup.py state.json backup.json
+chown backup:backup backup.py delete_backup.py add_backup.py clean_backup.py restore_backup.py state.json backup.json
 
 # log dir
 mkdir /var/log/backup/
 chmod 700 /var/log/backup/
-chown backup /var/log/backup/ -R
+chown backup:backup /var/log/backup/ -R
 
 # systemd units
-chown backup backup.service backup.timer
+chown backup:backup backup.service backup.timer
 chmod 700 backup.service backup.timer
 mv backup.service backup.timer /etc/systemd/system/
 
