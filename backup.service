@@ -2,8 +2,8 @@
 Description=Call the backup file
 
 [Service]
-ExecStart=/usr/bin/locale/backup.py
-WorkingDirectory=/usr/bin/locale/
+ExecStart=/usr/local/bin/backup.py
+WorkingDirectory=/usr/local/bin/
 User=backup
 
 [Install]
