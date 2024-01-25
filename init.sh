@@ -1,4 +1,4 @@
-  GNU nano 5.6.1                                           init.sh                                                      #!/bin/bash
+#  GNU nano 5.6.1                                           init.sh                                                      #!/bin/bash
 # -*- ENCODING: UTF-8 -*-
 
 
@@ -18,7 +18,7 @@ chown backup backup.py delete_backup.py add_backup.py clean_backup.py restore_ba
 # log dir
 mkdir /var/log/backup/
 chmod 700 /var/log/backup/
-chown backup /var/log/backup/ -R backup
+chown backup /var/log/backup/ -R
 
 # systemd units
 chown backup backup.service backup.timer
