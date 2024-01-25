@@ -1,1 +1,1 @@
-{"backup":{"files":{"path":"/usr/local/bin/App-backup-python/save"},"log":{"path":"/var/log/backup/"},"directory":{"ssh":{"active": false,"ip":"","port":"","username":"","password":""},"path":""},"limit":{"backups": 10}}}
+{"backup":{"files":{"path":"/usr/local/bin/App-backup-python/save"},"log":{"path":"/var/log/backup/"},"directory":{"ssh":{"active": false,"ip":"","port":"","username":"","password":""},"path":"/usr/local/bin/App-backup-python"},"limit":{"backups": 10}}}
