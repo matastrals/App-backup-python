@@ -7,6 +7,9 @@ if [[ $(id -u) -ne 0 ]] ; then
   exit 1
 fi
 
-# Libs python
+# Pip install
+dnf install pip
+
+# Libs python install
 pip install paramiko
 pip install flask
