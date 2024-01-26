@@ -70,7 +70,7 @@ def backupName() -> str :
 
 
 def compress(backup_name:str, path:str):
-    archive = tarfile.open(path + backup_name + ".tar", "w:gz")
+    archive = tarfile.open(backup_name + ".tar", "w:gz")
     archive.add("./save", arcname="")
 
 
