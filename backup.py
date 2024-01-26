@@ -19,9 +19,9 @@ def main():
         elif (sys.argv[1] == "list"):
             list()
         elif (sys.argv[1] == "restore"):
-            restore()
+            restore(sys.argv[2])
         elif (sys.argv[1] == "delete"):
-            delete()
+            delete(sys.argv[2])
         elif (sys.argv[1] == "clean"):
             clean()
     else:
@@ -90,7 +90,7 @@ def list():
         data = json.load(file)
     for id in data:
         print('id: ' + id + ' time: ' + data[id]['time'] + ' path: ' + data[id]['path'])
-        
+
 
 if __name__ == "__main__":
     main()
