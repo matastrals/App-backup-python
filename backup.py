@@ -45,7 +45,7 @@ def backup():
 
 def addToState(id:str, time:str, path:str):
     with open('state.json', 'r', encoding='utf-8') as file:
-        data = json.loads(file.read())
+        data = json.load(file)
     data[id] = {}
     data[id]['time'] = time
     data[id]['path'] = path
