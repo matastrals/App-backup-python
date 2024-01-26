@@ -22,12 +22,12 @@ def delete(id:str):
     try:
         with open('state.json', 'w') as file:
             json.dump(state, file)
-        backup_file = path + f'{id}_{time}.tar.gz'
+        backup_file = path + f'{id}_{time}.tar'
         if os.path.exists(backup_file):
             os.remove(backup_file)
-            logging.info("Deleting backup with id: " + id + " and path: " + path + '/' + id + '.tar.gz')
+            logging.info("Deleting backup with id: " + id + " and path: " + path + '/' + id + '.tar')
         else:
-            logging.error("Backup with id: " + id + " not found in " + path + '/' + id + '.tar.gz')
+            logging.error("Backup with id: " + id + " not found in " + path + '/' + id + '.tar')
             return
     except Exception as e:
         logging.error("Error while deleting backup with id: " + id + " and path: " + path + '/' + id + '.tar.gz\nException:' + str(e))

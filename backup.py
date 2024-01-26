@@ -72,7 +72,7 @@ def backupName() -> str :
 
 def compress(backup_name:str, path:str):
     archive = tarfile.open(backup_name + ".tar", "w:gz")
-    archive.add("./save", arcname="")
+    archive.add(path, arcname="")
 
 
 def ssh(ip:str, port:str, username:str, password:str, local_path:str, destination_path:str):
