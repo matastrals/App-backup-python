@@ -12,7 +12,6 @@ from clean_backup import clean
 
 
 def main():
-
     if (len(sys.argv) > 1):
         if (sys.argv[1] == "backup"):
             logging.info('Start of the backup...')
@@ -85,6 +84,13 @@ def ssh(ip:str, port:str, username:str, password:str, local_path:str, destinatio
     sftp.close()
     ssh.close()
 
+
+def list():
+    with open("state.json", "r") as file:
+        data = json.load(file)
+    for id in data:
+        print('id: ' + id + ' time: ' + data[id]['time'] + ' path: ' + data[id]['path'])
+        
 
 if __name__ == "__main__":
     main()
