@@ -1,6 +1,0 @@
-sudo dnf install git
-sudo dnf install pip
-sudo pip install paramiko
-sudo git clone https://github.com/matastrals/App-backup-python.git
-sudo chown backup App-backup-python
-sudo journalctl -xeu backup.service

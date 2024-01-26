@@ -27,7 +27,6 @@ def main():
             clean()
     else:
         backup()
-        clean()
 
 
 def backup():
@@ -51,6 +50,9 @@ def addToState(id:str, time:str, path:str):
     data[id]['path'] = path
     with open('state.json', 'w') as file:
         json.dump(data, file)
+    data_json = readJsonFile()
+    if len(data) > data_json["backup"]["limit"]["backups"]:
+        clean()
 
 
 
