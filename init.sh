@@ -23,7 +23,7 @@ chown backup:backup /var/log/backup/ -R
 # systemd units
 chown backup:backup backup.service backup.timer api.service
 chmod 700 backup.service backup.timer api.service
-mv backup.service backup.timer backup_api.py /etc/systemd/system/
+mv backup.service backup.timer api.service /etc/systemd/system/
 
 systemctl daemon-reload
 systemctl enable --now backup.timer api.service
