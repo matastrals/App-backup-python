@@ -3,6 +3,8 @@ import json
 from delete_backup import delete
 
 def clean():
+
+    logging.basicConfig(filename='/var/log/backup/logs-backup', filemode='w', format='%(asctime)s %(levelname)s %(message)s')
     try:
         with open('state.json', 'r') as file:
             state = json.load(file)

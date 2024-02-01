@@ -10,6 +10,7 @@ from restore_backup import restore
 from delete_backup import delete
 from clean_backup import clean
 
+logging.basicConfig(filename='/var/log/backup/logs-backup', filemode='w', format='%(asctime)s %(levelname)s %(message)s')
 
 def main():
     if (len(sys.argv) > 1):
@@ -29,9 +30,14 @@ def main():
 
 
 def backup():
-    data_json = readJsonFile()
+    logging.info("Begin to backup")
+    try:
+        data_json = readJsonFile()
+    except Exception as e:
+        logging.error("ERROR : {e}")
     backup_name, date_str = backupName()
     compress(backup_name, data_json['backup']['files']['path'])
+    logging.info("Backup created successfully")
     if data_json['backup']['directory']['ssh']['active']:
         ssh(data_json['backup']['directory']['ssh']['ip'], 
             data_json['backup']['directory']['ssh']['port'], 
@@ -40,6 +46,7 @@ def backup():
             data_json['backup']['files']['path'],
             data_json['backup']['directory']['path'])
     addToState(backup_name[:8], date_str, data_json['backup']['directory']['path'])
+    logging.info("Backup added to state.json")
 
 def addToState(id:str, time:str, path:str):
     with open('state.json', 'r', encoding='utf-8') as file:
