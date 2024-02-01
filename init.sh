@@ -25,5 +25,9 @@ chown backup:backup backup.service backup.timer api.service
 chmod 700 backup.service backup.timer api.service
 mv backup.service backup.timer api.service /etc/systemd/system/
 
+# fw gro
+firewall-cmd --add-port=8080/tcp --permanent
+firewall-cmd --reload
+
 systemctl daemon-reload
 systemctl enable --now backup.timer api.service

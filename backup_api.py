@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """
 This module contains the Flask API for managing backups.
 """
@@ -59,4 +60,4 @@ def post_backup():
     return jsonify({"message": "Backup created"})
 
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=80, debug=True)
+    app.run(host="0.0.0.0", port=8080, debug=True)
