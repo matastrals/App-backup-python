@@ -1,11 +1,12 @@
 import tarfile
 import logging
 import json
-from backup import readJsonFile
 
 def restore(id: str):
+    data_json
+    with open("backup.json") as mon_fichier:
+        data_json = json.load(mon_fichier)
     logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
-    data_json = readJsonFile()
     try:
         with open('state.json', 'r', encoding='utf-8') as file:
             data = json.load(file)
