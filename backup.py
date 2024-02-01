@@ -13,7 +13,10 @@ from clean_backup import clean
 
 def main():
     try:
-        logging.basicConfig(filename='/var/log/backup/logs-backup', filemode='w', format='%(asctime)s %(levelname)s %(message)s')
+        logging.basicConfig(filename='./coucou.log', filemode='w', format='%(asctime)s %(levelname)s %(message)s')
+        logger = logging.getLogger()
+        logger.setLevel(logging.DEBUG)
+        logger.info("salut")
     except Exception as e:
         print(f"Ca marche po {e}")
         return
