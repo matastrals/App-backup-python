@@ -3,7 +3,7 @@ import logging
 import json
 
 def restore(id: str):
-    data_json
+    data_json = {}
     with open("backup.json") as mon_fichier:
         data_json = json.load(mon_fichier)
     logging.basicConfig(level=logging.INFO, format='%(asctime)s %(levelname)s %(message)s')
