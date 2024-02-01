@@ -1,0 +1,10 @@
+[Unit]
+Description=Call the backup api file
+
+[Service]
+ExecStart=/usr/local/bin/App-backup-python/backup_api.py
+WorkingDirectory=/usr/local/bin/App-backup-python/
+User=backup
+
+[Install]
+WantedBy=default.target
