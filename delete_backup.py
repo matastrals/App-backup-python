@@ -34,5 +34,3 @@ def delete(id:str):
         return
 
 
-if __name__ == "__main__":
-    delete('dzqdzq')

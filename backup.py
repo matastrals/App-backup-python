@@ -10,9 +10,13 @@ from restore_backup import restore
 from delete_backup import delete
 from clean_backup import clean
 
-logging.basicConfig(filename='/var/log/backup/logs-backup', filemode='w', format='%(asctime)s %(levelname)s %(message)s')
 
 def main():
+    try:
+        logging.basicConfig(filename='/var/log/backup/logs-backup', filemode='w', format='%(asctime)s %(levelname)s %(message)s')
+    except Exception as e:
+        print(f"Ca marche po {e}")
+        return
     if (len(sys.argv) > 1):
         if (sys.argv[1] == "backup"):
             logging.info('Start of the backup...')
@@ -34,7 +38,7 @@ def backup():
     try:
         data_json = readJsonFile()
     except Exception as e:
-        logging.error("ERROR : {e}")
+        logging.error(f"ERROR : {e}")
     backup_name, date_str = backupName()
     compress(backup_name, data_json['backup']['files']['path'])
     logging.info("Backup created successfully")
